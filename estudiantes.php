@@ -1,3 +1,9 @@
+<?php
+require_once("config.php");
+
+$data = new Config();
+$all = $data->selectAll();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -56,17 +62,35 @@
               <th scope="col">NOMBRES</th>
               <th scope="col">DIRECCION</th>
               <th scope="col">LOGROS</th>
+              <th scope="col">ESPECIALIDAD</th>
+              <th scope="col">SKILLS</th>
+              <th scope="col">INGLES</th>
+              <th scope="col">SER</th>
+              <th scope="col">REVIEW</th>
               <th scope="col">DETALLE</th>
             </tr>
           </thead>
           <tbody class="" id="tabla">
 
             <!-- ///////Llenado DInamico desde la Base de Datos -->
-         
-       
-
+            <?php
+              foreach ($all as $key => $val) {
+            ?>
+            <tr>
+              <td><?php echo $val['id']?></td>
+              <td><?php echo $val['NOMBRES']?></td>
+              <td><?php echo $val['direccion']?></td>
+              <td><?php echo $val['logros']?></td>
+              <td><?php echo $val['especialidad']?></td>
+              <td><?php echo $val['skills']?></td>
+              <td><?php echo $val['ingles']?></td>
+              <td><?php echo $val['ser']?></td>
+              <td><?php echo $val['review']?></td>
+              <td><a class="btn btn-danger" href="borrarEstudiantes.php?id=<?=$val['id']?>&req=delete">Borrar</a></td>
+            </tr>       
+            <?php } ?>
           </tbody>
-        
+          
         </table>
 
       </div>
@@ -125,6 +149,61 @@
                  
                 />
               </div>
+
+              <div class="mb-1 col-12">
+                <label for="especialidad" class="form-label">especialidad</label>
+                <select id="especialidad" name="especialidad" class="form-control">
+                  <option value="">Seleccionar Especialidad</option>
+                  <option value="FrontEnd">Fornt-End</option>
+                  <option value="BackEnd">Back-End</option>
+                  <option value="FullStack">Full-Stack</option>
+                </select>
+              </div>
+
+              <div class="mb-1 col-12">
+                <label for="skills" class="form-label">skills</label>
+                <input 
+                  type="number"
+                  id="skills"
+                  name="skills"
+                  class="form-control"  
+                 
+                />
+              </div>
+
+              <div class="mb-1 col-12">
+                  <label for="ingles" class="form-label">ingles</label>
+                  <select id="ingles" name="ingles" class="form-control">
+                    <option value="Beginner">Beginner</option>
+                    <option value="Middle">Middle</option>
+                    <option value="Advanced">Advanced</option>
+                  </select>
+              </div>
+
+              <div class="mb-1 col-12">
+                <label for="ser" class="form-label">ser</label>
+                <input 
+                  type="number"
+                  id="ser"
+                  name="ser"
+                  class="form-control"  
+                 
+                />
+              </div>
+
+              <div class="mb-1 col-12">
+                  <label for="review" class="form-label">review</label>
+                  <select id="review" name="review" class="form-control">
+                    <option value="Malo">Malo</option>
+                    <option value="Regular">Regular</option>
+                    <option value="Bueno">Bueno</option>
+                  </select>
+              </div>
+
+
+              
+
+              
 
               <div class=" col-12 m-2">
                 <input type="submit" class="btn btn-primary" value="guardar" name="guardar"/>

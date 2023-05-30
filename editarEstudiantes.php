@@ -1,6 +1,6 @@
 <?php
-require_once("config.php");
-$data = new Config();
+require_once("Estudiante.php");
+$data = new Estudiante();
 
 ini_set("display_errors", 1);
 
